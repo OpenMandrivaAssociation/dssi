@@ -1,12 +1,12 @@
 %define name	dssi
 %define version	0.9.1
-%define release %mkrel 8
+%define release %mkrel 9
 
 Name: 	 	%{name}
 Summary:	Disposable Soft Synth Interface examples and utilities
 Version:	%{version}
 Release:	%{release}
-License:	LGPL
+License:	LGPLv2+
 Group:		Sound
 Source0:        http://prdownloads.sourceforge.net/dssi/%{name}-%{version}.tar.bz2
 Source1:	dssi.sh.bz2
