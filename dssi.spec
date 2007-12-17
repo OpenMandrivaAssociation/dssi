@@ -12,7 +12,6 @@ Source0:        http://prdownloads.sourceforge.net/dssi/%{name}-%{version}.tar.b
 Source1:	dssi.sh.bz2
 Source2:	dssi.csh.bz2
 URL:		http://dssi.sourceforge.net/
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot 
 BuildRequires:	ladspa-devel
 BuildRequires:	liblo-devel
 BuildRequires:	libalsa-devel
