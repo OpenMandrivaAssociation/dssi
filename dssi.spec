@@ -1,6 +1,6 @@
 %define name	dssi
 %define version	0.9.1
-%define release %mkrel 9
+%define release %mkrel 10
 
 Name: 	 	%{name}
 Summary:	Disposable Soft Synth Interface examples and utilities
