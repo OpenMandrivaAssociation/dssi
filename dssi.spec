@@ -1,25 +1,21 @@
-%define name	dssi
-%define version	0.9.1
-%define release %mkrel 10
-
-Name: 	 	%{name}
 Summary:	Disposable Soft Synth Interface examples and utilities
-Version:	%{version}
-Release:	%{release}
+Name:		dssi
+Version:	0.9.1
+Release:	%mkrel 11
 License:	LGPLv2+
 Group:		Sound
-Source0:        http://prdownloads.sourceforge.net/dssi/%{name}-%{version}.tar.bz2
+URL:		http://dssi.sourceforge.net/
+Source0:	http://prdownloads.sourceforge.net/dssi/%{name}-%{version}.tar.bz2
 Source1:	dssi.sh.bz2
 Source2:	dssi.csh.bz2
-URL:		http://dssi.sourceforge.net/
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot 
 BuildRequires:	ladspa-devel
 BuildRequires:	liblo-devel
 BuildRequires:	libalsa-devel
 BuildRequires:	jackit-devel
-BuildRequires:  libsamplerate-devel
-BuildRequires:  libsndfile-devel
-BuildRequires:  qt3-devel
+BuildRequires:	libsamplerate-devel
+BuildRequires:	libsndfile-devel
+BuildRequires:	qt3-devel
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 DSSI (pronounced "dizzy") is an API for audio plugins, with particular
@@ -33,7 +29,7 @@ This package contains examples and utilities.
 %package devel
 Summary:	Disposable Soft Synth Interface API
 Group:		Development/C
-Requires:	%name = %version
+Requires:	%{name} = %{version}
 Requires:	ladspa-devel
 Requires:	libalsa-devel
 
@@ -64,19 +60,20 @@ perl -pi -e 's/\${QTDIR}\/lib/\${QTDIR}\/%{_lib}/g' configure
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-%makeinstall
-install -d -m 755 %buildroot%_sysconfdir/profile.d
-bzcat %SOURCE1 > %buildroot%_sysconfdir/profile.d/dssi.sh
-bzcat %SOURCE2 > %buildroot%_sysconfdir/profile.d/dssi.csh
-perl -pi -e "s!__LIBDIR__!%_libdir!" %buildroot%_sysconfdir/profile.d/dssi*sh
+rm -rf %{buildroot}
+%makeinstall_std
+
+install -d -m 755 %{buildroot}%{_sysconfdir}/profile.d
+bzcat %{SOURCE1} > %{buildroot}%{_sysconfdir}/profile.d/dssi.sh
+bzcat %{SOURCE2} > %{buildroot}%{_sysconfdir}/profile.d/dssi.csh
+perl -pi -e "s!__LIBDIR__!%{_libdir}!" %{buildroot}%{_sysconfdir}/profile.d/dssi*sh
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
-%doc COPYING ChangeLog README
+%doc ChangeLog README
 %{_bindir}/jack-dssi-host
 %{_bindir}/dssi_osc_send
 %{_bindir}/dssi_osc_update
@@ -87,11 +84,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/dssi/*.la
 %{_libdir}/dssi/less_trivial_synth/LTS_*
 %{_libdir}/dssi/trivial_sampler/trivial_sampler_*
-%config(noreplace) %attr(755,root,root) %_sysconfdir/profile.d/dssi*sh
+%config(noreplace) %attr(755,root,root) %{_sysconfdir}/profile.d/dssi*sh
 
 %files devel
 %defattr(-,root,root)
-%doc COPYING ChangeLog README doc/TODO doc/*.txt doc/*.html
+%doc doc/TODO doc/*.txt doc/*.html
 %{_includedir}/dssi.h
 %{_libdir}/pkgconfig/dssi.pc
-
