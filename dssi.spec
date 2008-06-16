@@ -1,7 +1,7 @@
 Summary:	Disposable Soft Synth Interface examples and utilities
 Name:		dssi
 Version:	0.9.1
-Release:	%mkrel 11
+Release:	%mkrel 12
 License:	LGPLv2+
 Group:		Sound
 URL:		http://dssi.sourceforge.net/
