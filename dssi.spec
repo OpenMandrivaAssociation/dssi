@@ -1,13 +1,18 @@
 Summary:	Disposable Soft Synth Interface examples and utilities
 Name:		dssi
 Version:	0.9.1
-Release:	%mkrel 12
+Release:	%mkrel 11
 License:	LGPLv2+
 Group:		Sound
 URL:		http://dssi.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/dssi/%{name}-%{version}.tar.bz2
 Source1:	dssi.sh.bz2
 Source2:	dssi.csh.bz2
+# qt3 test is broken, this is a bit of a hack but works for our
+# purposes - AdamW 2008/12
+Patch0:		dssi-0.9.1-qt3test.patch
+# GCC 4.3 build fix - AdamW 2008/12
+Patch1:		dssi-0.9.1-gcc43.patch
 BuildRequires:	ladspa-devel
 BuildRequires:	liblo-devel
 BuildRequires:	libalsa-devel
@@ -49,13 +54,16 @@ defines the C API.
 
 %prep
 %setup -q
+%patch0 -p1 -b .qt3test
+%patch1 -p1 -b .gcc43
 
 %build
 alias libtoolize=true
 export QTDIR=/usr/lib/qt3
 export PATH=/usr/lib/qt3/bin:$PATH
-perl -pi -e 's/\$QTDIR\/lib/\$QTDIR\/%{_lib}/g' configure
-perl -pi -e 's/\${QTDIR}\/lib/\${QTDIR}\/%{_lib}/g' configure
+perl -pi -e 's/\$QTDIR\/lib/\$QTDIR\/%{_lib}/g' configure.ac
+perl -pi -e 's/\${QTDIR}\/lib/\${QTDIR}\/%{_lib}/g' configure.ac
+autoreconf
 %configure2_5x
 %make
 
