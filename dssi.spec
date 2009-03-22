@@ -1,18 +1,16 @@
 Summary:	Disposable Soft Synth Interface examples and utilities
 Name:		dssi
-Version:	0.9.1
-Release:	%mkrel 11
+Version:	1.0.0
+Release:	%mkrel 1
 License:	LGPLv2+
 Group:		Sound
 URL:		http://dssi.sourceforge.net/
-Source0:	http://prdownloads.sourceforge.net/dssi/%{name}-%{version}.tar.bz2
+Source0:	http://prdownloads.sourceforge.net/dssi/%{name}-%{version}.tar.gz
 Source1:	dssi.sh.bz2
 Source2:	dssi.csh.bz2
 # qt3 test is broken, this is a bit of a hack but works for our
 # purposes - AdamW 2008/12
 Patch0:		dssi-0.9.1-qt3test.patch
-# GCC 4.3 build fix - AdamW 2008/12
-Patch1:		dssi-0.9.1-gcc43.patch
 BuildRequires:	ladspa-devel
 BuildRequires:	liblo-devel
 BuildRequires:	libalsa-devel
@@ -55,7 +53,6 @@ defines the C API.
 %prep
 %setup -q
 %patch0 -p1 -b .qt3test
-%patch1 -p1 -b .gcc43
 
 %build
 alias libtoolize=true
@@ -85,6 +82,7 @@ rm -rf %{buildroot}
 %{_bindir}/jack-dssi-host
 %{_bindir}/dssi_osc_send
 %{_bindir}/dssi_osc_update
+%{_bindir}/karplong
 %{_bindir}/less_trivial_synth
 %{_bindir}/trivial_sampler
 %{_bindir}/trivial_synth
@@ -92,6 +90,9 @@ rm -rf %{buildroot}
 %{_libdir}/dssi/*.la
 %{_libdir}/dssi/less_trivial_synth/LTS_*
 %{_libdir}/dssi/trivial_sampler/trivial_sampler_*
+%{_mandir}/man1/dssi_osc_send.1*
+%{_mandir}/man1/dssi_osc_update.1*
+%{_mandir}/man1/jack-dssi-host.1*
 %config(noreplace) %attr(755,root,root) %{_sysconfdir}/profile.d/dssi*sh
 
 %files devel
