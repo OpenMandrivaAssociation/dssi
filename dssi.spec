@@ -1,23 +1,20 @@
 Summary:	Disposable Soft Synth Interface examples and utilities
 Name:		dssi
-Version:	1.0.0
-Release:	%mkrel 3
+Version:	1.1.0
+Release:	%mkrel 1
 License:	LGPLv2+
 Group:		Sound
 URL:		http://dssi.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/dssi/%{name}-%{version}.tar.gz
 Source1:	dssi.sh.bz2
 Source2:	dssi.csh.bz2
-# qt3 test is broken, this is a bit of a hack but works for our
-# purposes - AdamW 2008/12
-Patch0:		dssi-0.9.1-qt3test.patch
 BuildRequires:	ladspa-devel
 BuildRequires:	liblo-devel
 BuildRequires:	libalsa-devel
 BuildRequires:	jackit-devel
 BuildRequires:	libsamplerate-devel
 BuildRequires:	libsndfile-devel
-BuildRequires:	qt3-devel
+BuildRequires:	qt4-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
@@ -52,15 +49,12 @@ defines the C API.
 
 %prep
 %setup -q
-%patch0 -p1 -b .qt3test
 
 %build
-export QTDIR=/usr/lib/qt3
-export PATH=/usr/lib/qt3/bin:$PATH
-perl -pi -e 's/\$QTDIR\/lib/\$QTDIR\/%{_lib}/g' configure.ac
-perl -pi -e 's/\${QTDIR}\/lib/\${QTDIR}\/%{_lib}/g' configure.ac
-autoreconf
-%configure
+#perl -pi -e 's/\$QTDIR\/lib/\$QTDIR\/%{_lib}/g' configure.ac
+#perl -pi -e 's/\${QTDIR}\/lib/\${QTDIR}\/%{_lib}/g' configure.ac
+#autoreconf
+%configure2_5x
 %make
 
 %install
@@ -79,6 +73,8 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc ChangeLog README
 %{_bindir}/jack-dssi-host
+%{_bindir}/dssi_analyse_plugin
+%{_bindir}/dssi_list_plugins
 %{_bindir}/dssi_osc_send
 %{_bindir}/dssi_osc_update
 %{_bindir}/karplong
@@ -92,6 +88,8 @@ rm -rf %{buildroot}
 %{_mandir}/man1/dssi_osc_send.1*
 %{_mandir}/man1/dssi_osc_update.1*
 %{_mandir}/man1/jack-dssi-host.1*
+%{_mandir}/man1/dssi_analyse_plugin.1*
+%{_mandir}/man1/dssi_list_plugins.1*
 %config(noreplace) %attr(755,root,root) %{_sysconfdir}/profile.d/dssi*sh
 
 %files devel
