@@ -1,7 +1,7 @@
 Summary:	Disposable Soft Synth Interface examples and utilities
 Name:		dssi
-Version:	1.1.0
-Release:	%mkrel 2
+Version:	1.1.1
+Release:	1
 License:	LGPLv2+
 Group:		Sound
 URL:		http://dssi.sourceforge.net/
@@ -10,7 +10,7 @@ Source1:	dssi.sh.bz2
 Source2:	dssi.csh.bz2
 BuildRequires:	ladspa-devel
 BuildRequires:	liblo-devel
-BuildRequires:	libalsa-devel
+BuildRequires:	alsa-lib-devel
 BuildRequires:	jackit-devel
 BuildRequires:	libsamplerate-devel
 BuildRequires:	libsndfile-devel
@@ -51,9 +51,6 @@ defines the C API.
 %setup -q
 
 %build
-#perl -pi -e 's/\$QTDIR\/lib/\$QTDIR\/%{_lib}/g' configure.ac
-#perl -pi -e 's/\${QTDIR}\/lib/\${QTDIR}\/%{_lib}/g' configure.ac
-#autoreconf
 %configure2_5x
 %make
 
@@ -90,10 +87,10 @@ rm -rf %{buildroot}
 %{_mandir}/man1/jack-dssi-host.1*
 %{_mandir}/man1/dssi_analyse_plugin.1*
 %{_mandir}/man1/dssi_list_plugins.1*
-%config(noreplace) %attr(755,root,root) %{_sysconfdir}/profile.d/dssi*sh
+%config(noreplace) %attr(644,root,root) %{_sysconfdir}/profile.d/dssi*sh
 
 %files devel
 %defattr(-,root,root)
-%doc doc/TODO doc/*.txt doc/*.html
+%doc doc/TODO doc/*.txt
 %{_includedir}/dssi.h
 %{_libdir}/pkgconfig/dssi.pc
