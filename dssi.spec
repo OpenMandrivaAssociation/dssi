@@ -1,7 +1,7 @@
 Summary:	Disposable Soft Synth Interface examples and utilities
 Name:		dssi
 Version:	1.1.1
-Release:	1
+Release:	2
 License:	LGPLv2+
 Group:		Sound
 URL:		http://dssi.sourceforge.net/
@@ -13,7 +13,7 @@ BuildRequires:	liblo-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	jackit-devel
 BuildRequires:	libsamplerate-devel
-BuildRequires:	libsndfile-devel
+BuildRequires:	sndfile-devel
 BuildRequires:	qt4-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
@@ -31,7 +31,7 @@ Summary:	Disposable Soft Synth Interface API
 Group:		Development/C
 Requires:	%{name} = %{version}
 Requires:	ladspa-devel
-Requires:	libalsa-devel
+Requires:	alsa-lib-devel
 
 %description devel
 DSSI (pronounced "dizzy") is an API for audio plugins, with particular
