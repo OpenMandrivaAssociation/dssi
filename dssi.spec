@@ -10,7 +10,7 @@ Source1:	dssi.sh.bz2
 Source2:	dssi.csh.bz2
 BuildRequires:	ladspa-devel
 BuildRequires:	liblo-devel
-BuildRequires:	alsa-lib-devel
+BuildRequires:	libalsa-devel
 BuildRequires:	jackit-devel
 BuildRequires:	libsamplerate-devel
 BuildRequires:	sndfile-devel
@@ -31,7 +31,7 @@ Summary:	Disposable Soft Synth Interface API
 Group:		Development/C
 Requires:	%{name} = %{version}
 Requires:	ladspa-devel
-Requires:	alsa-lib-devel
+Requires:	libalsa-devel
 
 %description devel
 DSSI (pronounced "dizzy") is an API for audio plugins, with particular
