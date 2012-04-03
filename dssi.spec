@@ -1,7 +1,7 @@
 Summary:	Disposable Soft Synth Interface examples and utilities
 Name:		dssi
 Version:	1.1.1
-Release:	3
+Release:	4
 License:	LGPLv2+
 Group:		Sound
 URL:		http://dssi.sourceforge.net/
@@ -79,7 +79,6 @@ rm -rf %{buildroot}
 %{_bindir}/trivial_sampler
 %{_bindir}/trivial_synth
 %{_libdir}/dssi/*.so
-%{_libdir}/dssi/*.la
 %{_libdir}/dssi/less_trivial_synth/LTS_*
 %{_libdir}/dssi/trivial_sampler/trivial_sampler_*
 %{_mandir}/man1/dssi_osc_send.1*
