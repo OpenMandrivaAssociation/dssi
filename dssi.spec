@@ -9,7 +9,7 @@ Source0:	http://prdownloads.sourceforge.net/dssi/%{name}-%{version}.tar.gz
 Source1:	dssi.sh.bz2
 Source2:	dssi.csh.bz2
 BuildRequires:	ladspa-devel
-BuildRequires:	qt4-devel
+#BuildRequires:	qt4-devel
 BuildRequires:	pkgconfig(alsa)
 BuildRequires:	pkgconfig(jack)
 BuildRequires:	pkgconfig(liblo)
