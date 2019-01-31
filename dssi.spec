@@ -48,11 +48,11 @@ defines the C API.
 %setup -q
 
 %build
-%configure2_5x
-%make
+%configure
+%make_build
 
 %install
-%makeinstall_std
+%make_install
 
 install -d -m 755 %{buildroot}%{_sysconfdir}/profile.d
 bzcat %{SOURCE1} > %{buildroot}%{_sysconfdir}/profile.d/dssi.sh
@@ -71,8 +71,8 @@ perl -pi -e "s!__LIBDIR__!%{_libdir}!" %{buildroot}%{_sysconfdir}/profile.d/dssi
 %{_bindir}/trivial_sampler
 %{_bindir}/trivial_synth
 %{_libdir}/dssi/*.so
-%{_libdir}/dssi/less_trivial_synth/LTS_*
-%{_libdir}/dssi/trivial_sampler/trivial_sampler_*
+#{_libdir}/dssi/less_trivial_synth/LTS_*
+#{_libdir}/dssi/trivial_sampler/trivial_sampler_*
 %{_mandir}/man1/dssi_osc_send.1*
 %{_mandir}/man1/dssi_osc_update.1*
 %{_mandir}/man1/jack-dssi-host.1*
