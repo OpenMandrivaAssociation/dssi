@@ -29,6 +29,8 @@ This package contains examples and utilities.
 Summary:	Disposable Soft Synth Interface API
 Group:		Development/C
 Requires:	%{name} = %{version}
+Requires:	ladspa-devel
+Requires:	pkgconfig(alsa)
 
 %description devel
 DSSI (pronounced "dizzy") is an API for audio plugins, with particular
@@ -45,10 +47,10 @@ OSC part of the specification, and a documented header file which
 defines the C API.
 
 %prep
-%setup -q
+%autosetup -p1
+%configure
 
 %build
-%configure
 %make_build
 
 %install
