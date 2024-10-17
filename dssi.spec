@@ -4,7 +4,7 @@ Version:	1.1.1
 Release:	17
 License:	LGPLv2+
 Group:		Sound
-Url:		http://dssi.sourceforge.net/
+Url:		https://dssi.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/dssi/%{name}-%{version}.tar.gz
 Source1:	dssi.sh.bz2
 Source2:	dssi.csh.bz2
