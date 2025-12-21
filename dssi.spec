@@ -8,6 +8,11 @@ Url:		https://dssi.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/dssi/%{name}-%{version}.tar.gz
 Source1:	dssi.sh.bz2
 Source2:	dssi.csh.bz2
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	ladspa-devel
 #BuildRequires:	qt4-devel
 BuildRequires:	pkgconfig(alsa)
